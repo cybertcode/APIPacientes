@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\PacienteRequest;
-use App\Models\admin\Paciente;
 use Illuminate\Http\Request;
+use App\Models\admin\Paciente;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\admin\crearPacienteRequest;
+use App\Http\Requests\admin\ActualizarPacienteRequest;
 
 class PacienteController extends Controller
 {
@@ -26,11 +27,11 @@ class PacienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PacienteRequest $request)
+    public function store(crearPacienteRequest $request)
     {
         //
         Paciente::create($request->all());
-        return response()->json(['res' => 'true', 'msg' => 'Registro con éxito']);
+        return response()->json(['res' => 'true', 'msg' => 'Registro con éxito'],200);
     }
 
     /**
@@ -42,6 +43,7 @@ class PacienteController extends Controller
     public function show(Paciente $paciente)
     {
         //
+        return response()->json(['res' => true, 'Paciente' => $paciente],200);
     }
 
     /**
@@ -51,9 +53,11 @@ class PacienteController extends Controller
      * @param  \App\Models\admin\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paciente $paciente)
+    public function update(ActualizarPacienteRequest $request, Paciente $paciente)
     {
         //
+        $paciente->update($request->all());
+        return response()->json(['res' =>true,'mensaje'=>'Actualizado con éxito'],200);
     }
 
     /**
