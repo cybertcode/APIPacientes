@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Models\admin\Paciente;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PacienteResource;
+use App\Http\Resources\PacienteCollection;
 use App\Http\Requests\admin\crearPacienteRequest;
 use App\Http\Requests\admin\ActualizarPacienteRequest;
 
@@ -18,7 +20,9 @@ class PacienteController extends Controller
     public function index()
     {
         //
-        return Paciente::all();
+        // return PacienteResource::collection(Paciente::all()); //anterior|
+        $pacientes = Paciente::get();
+        return new PacienteCollection($pacientes);
     }
 
     /**
@@ -30,8 +34,9 @@ class PacienteController extends Controller
     public function store(crearPacienteRequest $request)
     {
         //
-        Paciente::create($request->all());
-        return response()->json(['res' => 'true', 'msg' => 'Registro con éxito'], 200);
+        // Paciente::create($request->all());
+        // return response()->json(['res' => 'true', 'msg' => 'Registro con éxito'], 200);
+        return (new PacienteResource(Paciente::create($request->all())))->additional(['msg' => 'Paciente registrado correctamente']);
     }
 
     /**
@@ -43,7 +48,8 @@ class PacienteController extends Controller
     public function show(Paciente $paciente)
     {
         //
-        return response()->json(['res' => true, 'Paciente' => $paciente], 200);
+        // return response()->json(['res' => true, 'Paciente' => $paciente], 200);
+        return (new PacienteResource($paciente))->additional(['msg' => 'Paciente seleccionado correctamente']);
     }
 
     /**
@@ -57,7 +63,8 @@ class PacienteController extends Controller
     {
         //
         $paciente->update($request->all());
-        return response()->json(['res' => true, 'mensaje' => 'Actualizado con éxito'], 200);
+        // return response()->json(['res' => true, 'mensaje' => 'Actualizado con éxito'], 200);
+        return (new PacienteResource($paciente))->additional(['msg' => 'Paciente actualizado correctamente'])->response()->setStatusCode(202);
     }
 
     /**
@@ -70,6 +77,7 @@ class PacienteController extends Controller
     {
         //
         $paciente->delete();
-        return response()->json(['res' => true, 'mensaje' => 'Eliminado con éxito'], 200);
+        // return response()->json(['res' => true, 'mensaje' => 'Eliminado con éxito'], 200);
+        return (new PacienteResource($paciente))->additional(['msg' => 'Paciente eliminado correctamente']);
     }
 }
