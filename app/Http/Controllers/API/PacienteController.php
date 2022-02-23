@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\admin\PacienteRequest;
 use App\Models\admin\Paciente;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class PacienteController extends Controller
     public function index()
     {
         //
+        return Paciente::all();
     }
 
     /**
@@ -24,9 +26,11 @@ class PacienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PacienteRequest $request)
     {
         //
+        Paciente::create($request->all());
+        return response()->json(['res' => 'true', 'msg' => 'Registro con éxito']);
     }
 
     /**
