@@ -31,7 +31,7 @@ class PacienteController extends Controller
     {
         //
         Paciente::create($request->all());
-        return response()->json(['res' => 'true', 'msg' => 'Registro con éxito'],200);
+        return response()->json(['res' => 'true', 'msg' => 'Registro con éxito'], 200);
     }
 
     /**
@@ -43,7 +43,7 @@ class PacienteController extends Controller
     public function show(Paciente $paciente)
     {
         //
-        return response()->json(['res' => true, 'Paciente' => $paciente],200);
+        return response()->json(['res' => true, 'Paciente' => $paciente], 200);
     }
 
     /**
@@ -57,7 +57,7 @@ class PacienteController extends Controller
     {
         //
         $paciente->update($request->all());
-        return response()->json(['res' =>true,'mensaje'=>'Actualizado con éxito'],200);
+        return response()->json(['res' => true, 'mensaje' => 'Actualizado con éxito'], 200);
     }
 
     /**
@@ -69,5 +69,7 @@ class PacienteController extends Controller
     public function destroy(Paciente $paciente)
     {
         //
+        $paciente->delete();
+        return response()->json(['res' => true, 'mensaje' => 'Eliminado con éxito'], 200);
     }
 }
