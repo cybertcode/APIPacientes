@@ -1,0 +1,53 @@
+---------------------------- SUSCRÍBETE------------------------------------------------
+{
+    "nombres": "Aderson Felix",
+    "apellidos": "Jara Lázaro",
+    "edad": "26",
+    "sexo": "Masculino",
+    "dni": "88991122",
+    "tipo_sangre": "A+",
+    "telefono": "946231232",
+    "correo": "adersonjara15@gmail.com",
+    "direccion": "Jr. Ramón Castilla 1090"
+}
+// DNI no repetido
+{
+    "nombres": "Aderson Felix",
+    "apellidos": "Jara Lázaro",
+    "edad": "26",
+    "sexo": "Masculino",
+    "dni": "44991122",
+    "tipo_sangre": "A+",
+    "telefono": "946231232",
+    "correo": "adersonjara15@gmail.com",
+    "direccion": "Jr. Ramón Castilla 1090"
+}
+{
+    "nombres": "Diego Carlos",
+    "apellidos": "Mesa Oswaldo",
+    "edad": "44",
+    "sexo": "Masculino",
+    "dni": "11991122",
+    "tipo_sangre": "A-",
+    "telefono": "911231232",
+    "correo": "diego2021@gmail.com",
+    "direccion": "Jr. Ramón Castilla 4051"
+}
+
+---------------------------------------------------------------------------------------
+
+    protected function invalidJson($request, ValidationException $exception)
+    {
+        return response()->json([
+            'message' => __('Los datos proporcionados no son válidos.'),
+            'errors' => $exception->errors(),
+        ], $exception->status);
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if($exception instanceof ModelNotFoundException){
+            return response()->json(["res" => false, "error" => "Error modelo no encontrado"], 400);
+        }
+        return parent::render($request, $exception);
+    }

@@ -1,0 +1,58 @@
+https://laravel.com/docs/8.x/eloquent-resources
+https://laravel.com/docs/8.x/helpers
+
+---------------------------- SUSCRÍBETE ------------------------------------------------
+
+            php artisan migrate:refresh --path=database/migrations/2021_03_22_061143_create_pacientes_table.php --seed
+
+
+            'id' => $this->id,
+            'nombres' => Str::of($this->nombres)->upper(),
+            'apellidos' => Str::of($this->apellidos)->upper(),
+            'edad' => $this->edad,
+            'sexo' => $this->sexo,
+            'dni' => $this->dni,
+            'tipo_sangre' => $this->tipo_sangre,
+            'telefono' => $this->telefono,
+            'correo' => $this->correo,
+            'direccion' => $this->direccion,
+            'created_at' => $this->created_at->format('d-m-Y'),
+            'updated_at' => $this->updated_at->format('d-m-Y')
+
+---------------------------- SUSCRÍBETE ------------------------------------------------
+
+{
+    "nombres": "Luisa Orlis",
+    "apellidos": "Hidalgo Osorio",
+    "edad": "47",
+    "sexo": "Femenino",
+    "dni": "11112222",
+    "tipo_sangre": "A-",
+    "telefono": "911222333",
+    "correo": "luisa@gmail.com",
+    "direccion": "Jr. Manuel Ruíz 9999"
+}
+
+{
+    "nombres": "Luis Julian",
+    "apellidos": "Fernandez Sifuentes",
+    "edad": "18",
+    "sexo": "Masculino",
+    "dni": "33334444",
+    "tipo_sangre": "A+",
+    "telefono": "922111333",
+    "correo": "luisjulian@gmail.com",
+    "direccion": "Jr. Manuel Ruíz 8888"
+}
+
+{
+    "nombres": "Carlos Juan",
+    "apellidos": "Quiroz Pereda",
+    "edad": "27",
+    "sexo": "Masculino",
+    "dni": "55556666",
+    "tipo_sangre": "A-",
+    "telefono": "933444555",
+    "correo": "carlosjuan@gmail.com",
+    "direccion": "Jr. Manuel Ruíz 7777"
+}
