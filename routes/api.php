@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\PacienteController;
+use App\Http\Controllers\APISanctum\AutentificarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::get('pacientes/{paciente}', [PacienteController::class, 'show']);
 // Route::put('pacientes/{paciente}', [PacienteController::class, 'update']);
 // Route::delete('pacientes/{paciente}', [PacienteController::class, 'destroy']);
-Route::apiResource('pacientes',PacienteController::class);
+// Route::apiResource('pacientes', PacienteController::class);
+/*************************
+ * RUTAS PARA APISanctum *
+ *************************/
+Route::post('usuarios/registro', [AutentificarController::class, 'registro']);
+Route::post('usuarios/acceso', [AutentificarController::class, 'acceso']);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::apiResource('pacientes', PacienteController::class);
+    Route::post('usuarios/salir', [AutentificarController::class, 'salir']);
+});

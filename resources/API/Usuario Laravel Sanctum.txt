@@ -1,0 +1,8 @@
+https://laravel.com/docs/8.x/sanctum
+
+{
+    "name" : "Juan",
+    "email": "juan2021@gmail.com",
+    "password": "123123"
+}
+
