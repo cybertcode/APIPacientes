@@ -21,7 +21,8 @@ class PacienteController extends Controller
     {
         //
         // return PacienteResource::collection(Paciente::all()); //anterior|
-        $pacientes = Paciente::get();
+        // $pacientes = Paciente::get();
+        $pacientes = Paciente::paginate(10);
         return new PacienteCollection($pacientes);
     }
 
