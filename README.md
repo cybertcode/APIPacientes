@@ -91,7 +91,7 @@ https://github.com/cybertcode/APIPacientes.git
     php artisan db:seed
     php artisan serve
     ```
--   ## Para uso en postman
+-   ## 🧑‍✈️ Para uso en postman
     -   ### ⭐ Autenticación de Usuario
         -   API Sanctun - crear usuario - autenticación - cerrar sesión
             -   Crear Usuario
